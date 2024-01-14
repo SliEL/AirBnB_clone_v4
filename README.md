@@ -150,6 +150,84 @@ EOF  all  create  destroy  help  quit  show  update
 (hbnb) quit
 ```
 
+## Web Dynamic
+
+# Overview
+This documentation outlines the steps to create a Flask web application script in the context of the AirBnB_clone_v4 project, specifically for the web_dynamic directory. The script involves copying certain files from web_flask to web_dynamic, renaming them, updating a route in a Python script, and modifying HTML for asset caching purposes.
+
+# Requirements
+Python 3
+Flask
+UUID module for Python
+Access to the AirBnB_clone_v4 GitHub repository
+Basic knowledge of Flask web development and HTML
+Step-by-Step Guide
+1. Setting up the Environment
+Ensure that you are in the root directory of the AirBnB_clone_v4 project.
+
+2. Copying Required Files
+From the web_flask directory, copy the following into web_dynamic:
+
+static folder
+templates/100-hbnb.html
+__init__.py
+100-hbnb.py
+The command for this operation (Linux/Unix):
+
+bash
+Copy code
+cp -r web_flask/static web_dynamic/
+cp web_flask/templates/100-hbnb.html web_dynamic/templates/
+cp web_flask/__init__.py web_dynamic/
+cp web_flask/100-hbnb.py web_dynamic/
+3. Renaming Files
+In the web_dynamic directory, rename the copied files:
+
+Rename 100-hbnb.py to 0-hbnb.py
+Rename 100-hbnb.html to 0-hbnb.html
+The command for this operation (Linux/Unix):
+
+bash
+Copy code
+mv web_dynamic/100-hbnb.py web_dynamic/0-hbnb.py
+mv web_dynamic/templates/100-hbnb.html web_dynamic/templates/0-hbnb.html
+4. Updating the Python Script
+Open 0-hbnb.py and update the existing route from /100-hbnb/ to /0-hbnb/.
+
+5. Handling Missing HTML File
+If 100-hbnb.html is not present in the templates directory, use 8-hbnb.html instead.
+
+6. Setting Up Environment Variables
+Set the necessary environment variables for the MySQL database:
+
+bash
+Copy code
+export HBNB_MYSQL_USER=hbnb_dev
+export HBNB_MYSQL_PWD=hbnb_dev_pwd
+export HBNB_MYSQL_HOST=localhost
+export HBNB_MYSQL_DB=hbnb_dev_db
+export HBNB_TYPE_STORAGE=db
+7. Running the Flask Application
+Run the Flask application using the following command:
+
+# bash
+
+python3 -m web_dynamic.0-hbnb
+8. Implementing Asset Caching Solution
+To avoid asset caching issues with Flask:
+
+In 0-hbnb.py, add a variable cache_id to the render_template. The value of this variable must be a unique UUID generated using uuid.uuid4().
+In 0-hbnb.html, modify each <link> tag to include cache_id as a query string in the URL for CSS files.
+For example:
+
+<link rel="stylesheet" type="text/css" href="../static/styles/4-common.css?{{ cache_id }}" />
+
+9. Testing the Application
+After implementing the changes, you can test the application by accessing http://0.0.0.0:5000/0-hbnb/ in a web browser.
+
+# Conclusion
+Following these steps will set up a Flask web application with dynamic asset loading, mitigating caching issues commonly encountered in web development. Ensure all changes are thoroughly tested before deployment.
+
 ## Bugs
 No known bugs at this time. 
 
@@ -158,6 +236,7 @@ Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twit
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)  
 Jhoan Zamora - [Github](https://github.com/jzamora5) / [Twitter](https://twitter.com/JhoanZamora10)  
 David Ovalle - [Github](https://github.com/Nukemenonai) / [Twitter](https://twitter.com/disartDave)
+Sliman EL-ElMansouri [Github](https://github.com/SliEl)
 
 Second part of Airbnb: Joann Vuong
 ## License
